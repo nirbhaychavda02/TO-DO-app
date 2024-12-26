@@ -1,0 +1,139 @@
+<!-- 
+Online HTML, CSS and JavaScript editor to run code online.
+-->
+<!-- TASK MANAGEMENT SYSTEM -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stylish To-Do List</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .todo-container {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .todo-container h3 {
+      margin: 0 0 20px;
+      text-align: center;
+      color: #333;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    #task-input {
+      flex-grow: 1;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #add-task-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    #add-task-btn:hover {
+      background: #0056b3;
+    }
+
+    #task-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .task {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .task:hover {
+      background: #f1f1f1;
+    }
+
+    .delete-btn {
+      padding: 5px 10px;
+      font-size: 14px;
+      color: #fff;
+      background: #dc3545;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .delete-btn:hover {
+      background: #a71d2a;
+    }
+  </style>
+</head>
+<body>
+  <div class="todo-container">
+    <h3>To-Do List</h3>
+    <div class="input-group">
+      <input type="text" id="task-input" placeholder="Enter a task" />
+      <button id="add-task-btn" onclick="addTask()">Add</button>
+    </div>
+    <ul id="task-list"></ul>
+  </div>
+
+  <script>
+    function addTask() {
+      const taskInput = document.getElementById('task-input');
+      const taskList = document.getElementById('task-list');
+
+      if (taskInput.value.trim() === '') {
+        alert('Please enter a task.');
+        return;
+      }
+
+      const taskItem = document.createElement('li');
+      taskItem.classList.add('task');
+      taskItem.innerHTML = `
+        <span>${taskInput.value}</span>
+        <button class="delete-btn" onclick="deleteTask(this)">Delete</button>
+      `;
+
+      taskList.appendChild(taskItem);
+      taskInput.value = '';
+    }
+
+    function deleteTask(button) {
+      button.parentElement.remove();
+    }
+  </script>
+</body>
+</html>
+
